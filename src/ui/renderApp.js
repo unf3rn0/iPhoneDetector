@@ -19,7 +19,7 @@ function candidatesMarkup(candidates) {
   return `<div class="chips">${candidates.map((model) => `<span class="chip">${model}</span>`).join("")}</div>`;
 }
 
-export function renderApp(target, detection) {
+export function renderApp(target, detection, uiState = {}) {
   const iphone = detection.iphone;
   const confidence = iphone?.confidence ?? 0;
   const confidencePercent = Math.round(confidence * 100);
@@ -78,7 +78,7 @@ export function renderApp(target, detection) {
           }
         </section>
 
-        <details class="debug" id="signals">
+        <details class="debug" id="signals" ${uiState.signalsOpen ? "open" : ""}>
           <summary>Технические сигналы</summary>
           <pre>${JSON.stringify(detection.signals, null, 2)}</pre>
         </details>
